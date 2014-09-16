@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.input.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basketball.CoreAppFXMLController">
+  <children>
+    <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <SplitPane dividerPositions="0.5" focusTraversable="true" orientation="VERTICAL" prefHeight="598.0" prefWidth="595.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                  <children>
+                    <TabPane prefHeight="573.0" prefWidth="593.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-301.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0">
+                      <tabs>
+                        <Tab text="Players">
+                          <content>
+                            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="784.0" prefWidth="598.0">
+                              <children>
+                                <HBox id="HBox" alignment="CENTER" layoutX="119.0" layoutY="205.0" prefHeight="25.0" prefWidth="197.0" spacing="20.0">
+                                  <children>
+                                    <Button id="deleteBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deletePlayersAction" prefHeight="40.0" prefWidth="80.0" text="Delete" textOverrun="ELLIPSIS" />
+                                    <Button id="addBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addPlayersAction" prefHeight="40.0" prefWidth="80.0" text="Add" />
+                                  </children>
+                                </HBox>
+                                <TableView fx:id="playerTable" prefHeight="273.0" prefWidth="595.0" AnchorPane.bottomAnchor="290.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+                                  <columns>
+                                    <TableColumn fx:id="playerNameCol" maxWidth="5000.0" minWidth="105.0" prefWidth="105.0" text="Name" />
+                                    <TableColumn fx:id="playerLNCol" maxWidth="5000.0" minWidth="81.0" prefWidth="132.0" text="Lastname" />
+                                    <TableColumn fx:id="playerNumberCol" maxWidth="5000.0" minWidth="80.0" prefWidth="97.0" text="Number" />
+                                    <TableColumn fx:id="playerPointsCol" maxWidth="5000.0" minWidth="34.0" prefWidth="148.0" text="Points" />
+                                    <TableColumn fx:id="playerAssitsCol" maxWidth="5000.0" minWidth="50.0" prefWidth="72.0" text="Assits" />
+                                                      <TableColumn fx:id="playerReboundsCol" maxWidth="5000.0" minWidth="80.0" prefWidth="105.0" text="Rebounds" />
+                                  </columns>
+                                </TableView>
+                                <HBox id="HBox" alignment="CENTER" prefHeight="130.0" spacing="20.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                  <children>
+                                    <VBox id="VBox" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="161.0" prefWidth="82.0" spacing="15.0">
+                                      <children>
+                                        <Label text="Name" />
+                                        <Label text="Lastname" />
+                                        <Label text="Number" />
+                                        <Label text="Points" />
+                                        <Label text="Assits" />
+                                                            <Label text="Rebounds" />
+                                      </children>
+                                    </VBox>
+                                    <VBox id="VBox" alignment="CENTER" maxHeight="-1.0" maxWidth="-1.0" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0">
+                                      <children>
+                                        <TextField fx:id="playerNameFld" alignment="CENTER" prefWidth="200.0" />
+                                        <TextField fx:id="playerLNFld" alignment="CENTER" prefWidth="200.0" />
+                                        <TextField id="numberFld" fx:id="playerNumberFld" alignment="CENTER" prefWidth="200.0" />
+                                        <TextField fx:id="playerPointsFld" alignment="CENTER" prefWidth="200.0" />
+                                                            <TextField fx:id="playerAssistsFld" alignment="CENTER" prefHeight="25.0" prefWidth="17.0" />
+                                                            <TextField fx:id="playerReboundsFld" alignment="CENTER" prefHeight="25.0" prefWidth="17.0" />
+                                      </children>
+                                    </VBox>
+                                  </children>
+                                </HBox>
+                                                <VBox layoutX="328.0" layoutY="14.0" prefHeight="163.0" prefWidth="32.0" spacing="5.0">
+                                                   <children>
+                                                      <ImageView fx:id="playerNameImg" fitHeight="25.0" fitWidth="25.0" layoutX="328.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="playerLNImg" fitHeight="25.0" fitWidth="25.0" layoutX="338.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="playerNumberImg" fitHeight="25.0" fitWidth="25.0" layoutX="348.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="playerPointsImg" fitHeight="25.0" fitWidth="25.0" layoutX="358.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="playerAssistsImg" fitHeight="25.0" fitWidth="25.0" layoutX="368.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="playerReboundsImg" fitHeight="25.0" fitWidth="25.0" layoutX="378.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true" />
+                                                   </children>
+                                                </VBox>
+                              </children>
+                            </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Coaches">
+                          <content>
+                            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                <HBox id="HBox" alignment="CENTER" layoutX="119.0" layoutY="205.0" prefHeight="25.0" prefWidth="197.0" spacing="20.0">
+                                  <children>
+                                    <Button id="deleteBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteCoachesAction" prefHeight="40.0" prefWidth="80.0" text="Delete" textOverrun="ELLIPSIS" />
+                                    <Button id="addBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addCoachesAction" prefHeight="40.0" prefWidth="80.0" text="Add" />
+                                  </children>
+                                </HBox>
+                                <TableView fx:id="coachesTable" prefHeight="295.0" prefWidth="593.0" AnchorPane.bottomAnchor="290.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+                                  <columns>
+                                    <TableColumn fx:id="coachesNameCol" maxWidth="5000.0" minWidth="10.0" prefWidth="125.0" text="Name" />
+                                    <TableColumn fx:id="coachesLNCol" maxWidth="5000.0" minWidth="10.0" prefWidth="141.0" text="Lastname" />
+                                    <TableColumn fx:id="coachesAgeCol" prefWidth="75.0" text="Age" />
+                                  </columns>
+                                </TableView>
+                                <HBox id="HBox" alignment="CENTER" prefHeight="78.0" spacing="20.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                  <children>
+                                    <VBox id="VBox" alignment="TOP_LEFT" prefWidth="82.0" spacing="12.0">
+                                      <children>
+                                        <Label text="Name" />
+                                        <Label text="Lastname" />
+                                        <Label text="Age" />
+                                      </children>
+                                    </VBox>
+                                    <VBox id="VBox" alignment="CENTER" prefHeight="-1.0" spacing="5.0">
+                                      <children>
+                                        <TextField fx:id="coachesNameFld" alignment="CENTER" prefWidth="200.0" />
+                                        <TextField fx:id="coachesLNFld" alignment="CENTER" prefWidth="200.0" />
+                                        <TextField id="ageFld" fx:id="coachesAgeFld" alignment="CENTER" prefWidth="200.0" />
+                                      </children>
+                                    </VBox>
+                                  </children>
+                                </HBox>
+                                                <VBox layoutX="324.0" layoutY="12.0" spacing="4.0">
+                                                   <children>
+                                                      <ImageView fx:id="coachNameImg" fitHeight="25.0" fitWidth="25.0" layoutX="324.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="coachLastnameImg" fitHeight="25.0" fitWidth="25.0" layoutX="334.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="coachAgeImg" fitHeight="25.0" fitWidth="25.0" layoutX="344.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+                                                   </children>
+                                                </VBox>
+                              </children>
+                            </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Team">
+                          <content>
+                            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="226.0" prefWidth="593.0">
+                              <children>
+                                <HBox id="HBox" alignment="CENTER" layoutX="119.0" layoutY="205.0" prefHeight="25.0" prefWidth="197.0" spacing="20.0">
+                                  <children>
+                                    <Button id="deleteBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteTeamsAction" prefHeight="40.0" prefWidth="80.0" text="Delete" textOverrun="ELLIPSIS" />
+                                    <Button id="addBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addTeamsAction" prefHeight="40.0" prefWidth="80.0" text="Add" />
+                                  </children>
+                                </HBox>
+                                <TableView fx:id="teamsTable" prefHeight="295.0" prefWidth="593.0" AnchorPane.bottomAnchor="290.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+                                  <columns>
+                                    <TableColumn fx:id="teamsNameCol" maxWidth="5000.0" minWidth="10.0" prefWidth="125.0" text="Name" />
+                                    <TableColumn fx:id="teamsFromCol" maxWidth="5000.0" minWidth="10.0" prefWidth="197.0" text="From" />
+                                    <TableColumn fx:id="teamsPointsCol" maxWidth="5000.0" minWidth="10.0" prefWidth="117.0" text="Points" />
+                                  </columns>
+                                </TableView>
+                                <HBox id="HBox" alignment="CENTER" prefHeight="78.0" spacing="20.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                  <children>
+                                    <VBox id="VBox" alignment="TOP_LEFT" prefWidth="82.0" spacing="12.0">
+                                      <children>
+                                        <Label text="Name" />
+                                        <Label text="From" />
+                                        <Label text="Points" />
+                                      </children>
+                                    </VBox>
+                                    <VBox id="VBox" alignment="CENTER" spacing="5.0">
+                                      <children>
+                                        <TextField id="teamNa" fx:id="teamNameFld" alignment="CENTER" prefWidth="200.0" />
+                                        <TextField fx:id="teamFromFld" alignment="CENTER" prefWidth="200.0" />
+                                        <TextField fx:id="teamPointsFld" alignment="CENTER" prefWidth="200.0" />
+                                        <HBox id="HBox" alignment="CENTER" spacing="5.0" />
+                                      </children>
+                                    </VBox>
+                                  </children>
+                                </HBox>
+                                                <VBox layoutX="324.0" layoutY="13.0" spacing="4.0">
+                                                   <children>
+                                                      <ImageView fx:id="teamNameImg" fitHeight="25.0" fitWidth="25.0" layoutX="324.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="teamFromImg" fitHeight="25.0" fitWidth="25.0" layoutX="334.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="teamPointsImg" fitHeight="25.0" fitWidth="25.0" layoutX="344.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
+                                                   </children>
+                                                </VBox>
+                              </children>
+                            </AnchorPane>
+                          </content>
+                        </Tab>
+                      </tabs>
+                    </TabPane>
+                  </children>
+                </AnchorPane>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="396.0" prefHeight="40.0" prefWidth="396.0" SplitPane.resizableWithParent="false">
+                           <children>
+                              <Text fx:id="leagueName" layoutX="159.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ABA League" />
+                           </children>
+                </AnchorPane>
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="395.0">
+               <children>
+                  <ImageView fitHeight="471.0" fitWidth="306.0" layoutX="78.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="66.46807861328125">
+                     <image>
+                        <Image url="@../images/Fullcourtintl2.gif" />
+                     </image>
+                  </ImageView>
+                  <HBox layoutX="78.0" layoutY="559.0" spacing="50.0">
+                     <children>
+                        <Button fx:id="teamBtn" layoutX="40.0" layoutY="42.0" mnemonicParsing="false" onAction="#setTeamAction" prefHeight="25.0" prefWidth="100.0" text="Team" />
+                        <Button fx:id="coachBtn" layoutX="50.0" layoutY="52.0" mnemonicParsing="false" onAction="#setCoachAction" prefHeight="25.0" prefWidth="100.0" text="Coach" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="playerFourBtn" layoutX="131.0" layoutY="89.0" mnemonicParsing="false" onAction="#setPosition" prefHeight="40.0" prefWidth="40.0" text="4" />
+                  <Button fx:id="playerFiveBtn" layoutX="235.0" layoutY="89.0" mnemonicParsing="false" onAction="#setPosition" prefHeight="40.0" prefWidth="40.0" text="5" />
+                  <Button fx:id="playerThreeBtn" layoutX="235.0" layoutY="173.0" mnemonicParsing="false" onAction="#setPosition" prefHeight="40.0" prefWidth="40.0" text="3" />
+                  <Button fx:id="playerOneBtn" layoutX="183.0" layoutY="259.0" mnemonicParsing="false" onAction="#setPosition" prefHeight="40.0" prefWidth="40.0" text="1" />
+                  <Button fx:id="playerTwoBtn" layoutX="131.0" layoutY="173.0" mnemonicParsing="false" onAction="#setPosition" prefHeight="40.0" prefWidth="40.0" text="2" />
+                  <Text layoutX="169.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First five">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+      </items>
+    </SplitPane>
+    <MenuBar layoutY="1.0" minHeight="-Infinity" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="League">
+          <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showStatisticsAction" text="Show Statistics">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="S" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="About">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#aboutAction" text="About">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="A" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </children>
+  <effect>
+    <DropShadow color="$x1" offsetX="5.0" offsetY="5.0" />
+  </effect>
+  <stylesheets>
+    <URL value="@coreappfxml.css" />
+  </stylesheets>
+</AnchorPane>
