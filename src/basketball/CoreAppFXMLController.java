@@ -34,7 +34,7 @@ import javafx.stage.Stage;
  * @author tadija
  * @author lazarevic.tadija@gmail.com
  */
-public class CoreAppFXMLController implements Initializable {
+public class CoreAppFXMLController implements Initializable, Runnable {
 
     // Input za igrace
     @FXML
@@ -431,6 +431,19 @@ public class CoreAppFXMLController implements Initializable {
             stage.setScene(new Scene(root));
             stage.setTitle("Error");
             stage.show();
+        }
+    }
+
+    //tred za brisanje validacionih slika
+    public void run() {
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            playerNameImg.setImage(null);
+            playerLNImg.setImage(null);
+            //itd...
         }
 
     }
