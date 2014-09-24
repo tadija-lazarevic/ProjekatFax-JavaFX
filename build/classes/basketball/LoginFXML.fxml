@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basketball.LoginFXMLController">
+  <children>
+    <HBox id="HBox" alignment="CENTER" layoutX="56.0" layoutY="67.0" spacing="100.0">
+      <children>
+        <Label text="Name" />
+        <TextField fx:id="nameFld" alignment="CENTER" prefWidth="200.0" />
+      </children>
+    </HBox>
+    <HBox id="HBox" alignment="CENTER" layoutX="56.0" layoutY="162.0" spacing="77.0">
+      <children>
+        <Label text="Password" />
+        <PasswordField fx:id="passwordFld" alignment="CENTER" prefWidth="200.0" />
+      </children>
+    </HBox>
+    <HBox id="HBox" alignment="CENTER" layoutX="142.0" layoutY="234.0" spacing="75.0">
+      <children>
+        <Button fx:id="okBtn" mnemonicParsing="false" onAction="#okBtnAction" text="OK" />
+        <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitBtnAction" text="EXIT" />
+      </children>
+    </HBox>
+  </children>
+</AnchorPane>

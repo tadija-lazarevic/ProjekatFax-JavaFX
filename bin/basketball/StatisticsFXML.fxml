@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basketball.ShowStatisticsController">
+   <children>
+      <SplitPane layoutX="200.0" layoutY="56.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.13851351351351351" layoutX="219.0" layoutY="49.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Text layoutX="80.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most points:">
+                                 <font>
+                                    <Font name="Arial Bold" size="16.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="350.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most assists:">
+                                 <font>
+                                    <Font name="Arial Bold" size="16.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="605.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most rebounds:">
+                                 <font>
+                                    <Font name="Arial Bold" size="16.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="596.0">
+                           <children>
+                              <TableView fx:id="pointsTable" prefHeight="509.0" prefWidth="268.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="533.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                  <TableColumn fx:id="pointsNameCol" prefWidth="123.0" text="Name" />
+                                  <TableColumn fx:id="pointsLNCol" prefWidth="138.0" text="Lastname" />
+                                </columns>
+                              </TableView>
+                              <TableView fx:id="assistsTable" layoutX="260.0" prefHeight="509.0" prefWidth="271.0">
+                                 <columns>
+                                    <TableColumn fx:id="assistsNameCol" prefWidth="134.0" text="Name" />
+                                    <TableColumn fx:id="assistsLNCol" prefWidth="136.0" text="Lastname" />
+                                 </columns>
+                              </TableView>
+                              <TableView fx:id="reboundsTable" layoutX="531.0" prefHeight="509.0" prefWidth="265.0">
+                                 <columns>
+                                    <TableColumn fx:id="reboundsNameCol" prefWidth="131.0" text="Name" />
+                                    <TableColumn fx:id="reboundsLNCol" prefWidth="130.0" text="Lastname" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

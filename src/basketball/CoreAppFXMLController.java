@@ -311,36 +311,38 @@ public class CoreAppFXMLController implements Initializable {
     public void addPlayersAction(ActionEvent event) throws IOException,
             SQLException {
         //Validacija inputa
+        boolean uspesno = true;
+        //boolean validacija za svako polje
         boolean playerNameStatus = true;
-        boolean uspesno = false;
-        int round = 0;
+        boolean playerLNStatus = true;
+        boolean playerNumberStatus = true;
+        boolean playerPointsStatus = true;
+        boolean playerAssistsStatus = true;
+        boolean playerReboundsStatus = true;
+
         //Query za upisivanje u Player bazu
         String sql = ("INSERT INTO `PlayerTable`(`Name`, `Lastname`, `Number`, `Points`, `Assists`, `Rebounds`) VALUES (?,?,?,?,?,?)");
         PreparedStatement ps = PlayerBase.get().prepareStatement(sql);
 
         String name = playerNameFld.getText();
         if ((name == null) || (name.trim().equals(""))) {
-            playerNameStatus = false;
-            uspesno = false;
             playerNameImg.setImage(errorImg);
-        } else {
-            if (!playerNameStatus) {
-                playerNameImg.setImage(okImg);
-                uspesno = true;
-            }
-
-            ps.setString(1, playerNameFld.getText());
+            uspesno = false;
+            playerNameStatus = false;
+        } else if (!playerNameStatus) {
+            playerNameImg.setImage(okImg);
+            uspesno = true;
         }
+        ps.setString(1, playerNameFld.getText());
 
         String lastName = playerLNFld.getText();
         if ((lastName == null) || (lastName.trim().equals(""))) {
-            uspesno = false;
             playerLNImg.setImage(errorImg);
+            playerLNStatus = false;
+            uspesno = false;
         } else {
-            if (!uspesno) {
+            if (!playerLNStatus) {
                 playerLNImg.setImage(okImg);
-                uspesno = true;
-                playerLNImg.setImage(null);
             }
             ps.setString(2, playerLNFld.getText());
         }
@@ -356,9 +358,12 @@ public class CoreAppFXMLController implements Initializable {
         if (playerNumber == null) {
             uspesno = false;
             playerNumberImg.setImage(errorImg);
+            playerNumberStatus = false;
         } else {
-            uspesno = true;
-            playerNumberImg.setImage(null);
+            if (!playerNumberStatus) {
+
+                playerNumberImg.setImage(okImg);
+            }
             ps.setInt(3, Integer.parseInt(playerNumberFld.getText()));
         }
 
@@ -372,13 +377,17 @@ public class CoreAppFXMLController implements Initializable {
         if (points == null) {
             uspesno = false;
             playerPointsImg.setImage(errorImg);
+            playerPointsStatus = false;
         } else {
-            uspesno = true;
-            playerPointsImg.setImage(null);
+            if (!playerPointsStatus) {
+
+                playerPointsImg.setImage(okImg);
+            }
             ps.setInt(4, Integer.parseInt(playerPointsFld.getText()));
         }
 
         Integer assists = null;
+
         try {
             assists = Integer.parseInt(playerAssistsFld.getText());
         } catch (Exception e) {
@@ -387,9 +396,12 @@ public class CoreAppFXMLController implements Initializable {
         if (assists == null) {
             uspesno = false;
             playerAssistsImg.setImage(errorImg);
+            playerAssistsStatus = false;
         } else {
-            uspesno = true;
-            playerAssistsImg.setImage(null);
+            if (!playerAssistsStatus) {
+
+                playerAssistsImg.setImage(okImg);
+            }
             ps.setInt(5, Integer.parseInt(playerAssistsFld.getText()));
         }
 
@@ -402,21 +414,24 @@ public class CoreAppFXMLController implements Initializable {
         if (playerRebounds == null) {
             uspesno = false;
             playerReboundsImg.setImage(errorImg);
+            playerReboundsStatus = false;
         } else {
-            uspesno = true;
-            playerReboundsImg.setImage(null);
+            if (!playerReboundsStatus) {
+
+                playerReboundsImg.setImage(okImg);
+            }
+
             ps.setInt(6, Integer.parseInt(playerReboundsFld.getText()));
         }
 
         if (uspesno) {
-            playerData.add(new Player(playerNameFld.getText(), playerLNFld
-                    .getText(), Integer.parseInt(playerNumberFld.getText()),
-                    Integer.parseInt(playerPointsFld.getText()), Integer
-                    .parseInt(playerAssistsFld.getText()), Integer
-                    .parseInt(playerReboundsFld.getText())));
-
+            playerData.add(new Player(playerNameFld.getText(),
+                    playerLNFld.getText(),
+                    Integer.parseInt(playerNumberFld.getText()),
+                    Integer.parseInt(playerPointsFld.getText()),
+                    Integer.parseInt(playerAssistsFld.getText()),
+                    Integer.parseInt(playerReboundsFld.getText())));
             ps.execute();
-
             playerNameFld.clear();
             playerLNFld.clear();
             playerNumberFld.clear();
@@ -453,14 +468,19 @@ public class CoreAppFXMLController implements Initializable {
         }
 
     }
-
-    boolean coachesNameStatus = true;
+    boolean coachNameStatus = true;
+    boolean coachLNStatus = true;
+    boolean coachAgeStatus = true;
 
     // Akcije za trenera
+
     public void addCoachesAction(ActionEvent event) throws IOException, SQLException {
 
         //Validacija unosa
-        boolean uspesno = false;
+        boolean coachesNameStatus = true;
+        boolean coachesLNStatus = true;
+        boolean coachesAgeStatus = true;
+        boolean uspesno = true;
         //Query za upisivanje u Coach bazu
         String sql = "INSERT INTO `CoachTable`(`Name`, `Lastname`, `Age`) VALUES (?,?,?)";
         PreparedStatement ps = CoachBase.get().prepareStatement(sql);
@@ -468,28 +488,28 @@ public class CoreAppFXMLController implements Initializable {
         //provera name
         String name = coachesNameFld.getText();
         if ((name == null) || (name.equals(""))) {
-            uspesno = false;
             coachNameImg.setImage(errorImg);
+            uspesno = false;
             coachesNameStatus = false;
         } else {
             if (!coachesNameStatus) {
                 uspesno = true;
                 coachNameImg.setImage(okImg);
-                ps.setString(1, coachesNameFld.getText());
-                coachesNameStatus = true;
             }
+            ps.setString(1, coachesNameFld.getText());
         }
 
         //provera lastname
         String lastName = coachesLNFld.getText();
         if ((lastName == null) || (lastName.equals(""))) {
-            uspesno = false;
-            //lLastName = null;
             coachLastnameImg.setImage(errorImg);
+            uspesno = false;
+            coachesLNStatus = false;
         } else {
-            uspesno = true;
-            //lLastName = ;
-            coachLastnameImg.setImage(okImg);
+            if (!coachesLNStatus) {
+                uspesno = true;
+                coachLastnameImg.setImage(okImg);
+            }
             ps.setString(2, coachesLNFld.getText());
         }
         //Proverava godine trenera
@@ -497,15 +517,17 @@ public class CoreAppFXMLController implements Initializable {
             int age = Integer.parseInt(coachesAgeFld.getText());
             if ((age < 20) || (age > 70)) {
                 uspesno = false;
+                coachesAgeStatus = false;
             } else {
-                uspesno = true;
                 coachAgeImg.setImage(okImg);
                 ps.setString(3, coachesAgeFld.getText());
+                uspesno = true;
             }
-
         } catch (NumberFormatException e) {
+            e.printStackTrace();
             coachAgeImg.setImage(errorImg);
         }
+
         //Ako je validacija uspesna
         if (uspesno) {
             coachesData.add(new Coaches(coachesNameFld.getText(), coachesLNFld

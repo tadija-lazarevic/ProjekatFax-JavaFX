@@ -104,7 +104,7 @@ public class ShowStatisticsController implements Initializable {
             ResultSet rs = PlayerBase.query("SELECT * FROM PlayerTable ORDER BY Rebounds DESC");
             reboundsData.clear();
             while (rs.next()) {
-                reboundsData.add(new Player(rs.getString("Name"), rs.getString("Lastname")));
+                reboundsData.add(new Player( rs.getString("Name"), rs.getString("Lastname")));
             }
         } catch (Exception e) {
             System.out.println(""+e.getMessage());

@@ -7,6 +7,7 @@ package basketball;
 
 import base.CoachBase;
 import base.TeamBase;
+import com.mysql.jdbc.Connection;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
@@ -73,9 +74,8 @@ public class SetCoachController implements Initializable {
         }
     }
 
-    public void chooseAction(ActionEvent event) {
+    public void chooseAction(ActionEvent event) {        
         
-        System.out.println("name");
     }
 
     public void cancelAction(ActionEvent event) {
