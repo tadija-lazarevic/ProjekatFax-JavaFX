@@ -309,6 +309,12 @@ public class CoreAppFXMLController implements Initializable, Runnable {
 
     // Akcije za igraca
     int playerRound = 0;
+    int nameGreska = 0;
+    int lnGreska = 0;
+    int numberGreska = 0;
+    int pointsGreska = 0;
+    int assistsGreska = 0;
+    int reboundsGreska = 0;
 
     public void addPlayersAction(ActionEvent event) throws IOException,
             SQLException {
@@ -407,9 +413,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             }
             ps.setInt(6, Integer.parseInt(playerReboundsFld.getText()));
         }
-
         if (uspesno) {
-
             playerData.add(new Player(playerNameFld.getText(),
                     playerLNFld.getText(),
                     Integer.parseInt(playerNumberFld.getText()),
@@ -423,6 +427,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             playerPointsFld.clear();
             playerAssistsFld.clear();
             playerReboundsFld.clear();
+
             playerRound++;
         } else {
             Parent root = FXMLLoader.load(getClass().getResource(
@@ -443,6 +448,10 @@ public class CoreAppFXMLController implements Initializable, Runnable {
         } finally {
             playerNameImg.setImage(null);
             playerLNImg.setImage(null);
+            playerNumberImg.setImage(null);
+            playerPointsImg.setImage(null);
+            playerAssistsImg.setImage(null);
+            playerReboundsImg.setImage(null);
             //itd...
         }
 
@@ -650,6 +659,19 @@ public class CoreAppFXMLController implements Initializable, Runnable {
         statistics.setWidth(800);
         statistics.setHeight(600);
         statistics.setResizable(false);
+    }
+
+    public void show1stTeamAction(ActionEvent event) throws Exception {
+
+        Parent root = FXMLLoader.load(getClass().getResource("Set1stFive.fxml"));
+        Stage five = new Stage();
+        five.setScene(new Scene(root));
+        five.setTitle("1st Five");
+        five.centerOnScreen();
+        five.setWidth(600);
+        five.setHeight(400);
+        five.setResizable(false);
+        five.show();
     }
 
     public void setPosition(ActionEvent event) throws IOException {
