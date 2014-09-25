@@ -329,7 +329,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if (playerRound > 0) {
                 playerNameImg.setImage(okImg);
             }
-            ps.setString(1, playerNameFld.getText());
+            ps.setString(1, name);
         }
 
         String lastName = playerLNFld.getText();
@@ -340,7 +340,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if (playerRound > 0) {
                 playerLNImg.setImage(okImg);
             }
-            ps.setString(2, playerLNFld.getText());
+            ps.setString(2, lastName);
         }
 
         Integer playerNumber = null;
@@ -356,7 +356,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if (playerRound > 0) {
                 playerNumberImg.setImage(okImg);
             }
-            ps.setInt(3, Integer.parseInt(playerNumberFld.getText()));
+            ps.setInt(3, playerNumber);
         }
 
         Integer points = null;
@@ -372,7 +372,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if (playerRound > 0) {
                 playerPointsImg.setImage(okImg);
             }
-            ps.setInt(4, Integer.parseInt(playerPointsFld.getText()));
+            ps.setInt(4, points);
         }
 
         Integer assists = null;
@@ -389,7 +389,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if (playerRound > 0) {
                 playerAssistsImg.setImage(okImg);
             }
-            ps.setInt(5, Integer.parseInt(playerAssistsFld.getText()));
+            ps.setInt(5, assists);
         }
 
         Integer playerRebounds = null;
@@ -405,7 +405,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if (playerRound > 0) {
                 playerReboundsImg.setImage(okImg);
             }
-            ps.setInt(6, Integer.parseInt(playerReboundsFld.getText()));
+            ps.setInt(6, playerRebounds);
         }
         if (uspesno) {
             playerData.add(new Player(playerNameFld.getText(),
@@ -491,7 +491,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if (coachRound > 0) {
                 coachNameImg.setImage(okImg);
             }
-            ps.setString(1, coachesNameFld.getText());
+            ps.setString(1, name);
         }
 
         //provera lastname
@@ -503,7 +503,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if (coachRound > 0) {
                 coachLastnameImg.setImage(okImg);
             }
-            ps.setString(2, coachesLNFld.getText());
+            ps.setString(2, lastName);
         }
         //Proverava godine trenera
         try {
@@ -577,7 +577,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if (teamRound > 0) {
                 teamNameImg.setImage(okImg);
             }
-            ps.setString(1, teamNameFld.getText());
+            ps.setString(1, name);
         }
 
         //Proverava grad tima
@@ -589,12 +589,12 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if (teamRound > 0) {
                 teamFromImg.setImage(okImg);
             }
-            ps.setString(2, teamFromFld.getText());
+            ps.setString(2, from);
         }
 
         //Proverava poene tima
         try {
-            int points = Integer.parseInt(teamPointsFld.getText());
+            Integer points = Integer.parseInt(teamPointsFld.getText());
             if ((points < 0) || (points > 150)) {
                 uspesno = false;
             } else {
