@@ -309,12 +309,6 @@ public class CoreAppFXMLController implements Initializable, Runnable {
 
     // Akcije za igraca
     int playerRound = 0;
-    int nameGreska = 0;
-    int lnGreska = 0;
-    int numberGreska = 0;
-    int pointsGreska = 0;
-    int assistsGreska = 0;
-    int reboundsGreska = 0;
 
     public void addPlayersAction(ActionEvent event) throws IOException,
             SQLException {
@@ -429,6 +423,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             playerReboundsFld.clear();
 
             playerRound++;
+
         } else {
             Parent root = FXMLLoader.load(getClass().getResource(
                     "AddErrorFXML.fxml"));
@@ -622,6 +617,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             teamPointsFld.clear();
             ps.execute();
             teamRound++;
+
         } else {
             Parent root = FXMLLoader.load(getClass().getResource(
                     "AddErrorFXML.fxml"));
