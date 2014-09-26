@@ -10,6 +10,9 @@ import base.PlayerBase;
 import base.TeamBase;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -148,6 +151,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
     // Klasa igrac
     public static class Player {
 
+        private SimpleIntegerProperty id = new SimpleIntegerProperty();
         private SimpleStringProperty name = new SimpleStringProperty();
         private SimpleStringProperty lastName = new SimpleStringProperty();
         private SimpleIntegerProperty number = new SimpleIntegerProperty();
@@ -155,7 +159,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
         private SimpleIntegerProperty assists = new SimpleIntegerProperty();
         private SimpleIntegerProperty rebounds = new SimpleIntegerProperty();
 
-        public Player(String name, String lastName, Integer number,
+        public Player(Integer id, String name, String lastName, Integer number,
                 Integer points, Integer assists, Integer rebounds) {
             this.name.setValue(name);
             this.lastName.setValue(lastName);
@@ -166,15 +170,22 @@ public class CoreAppFXMLController implements Initializable, Runnable {
 
         }
 
-        public Player(String name, String lastname, Integer number) {
+        public Player(Integer id, String name, String lastname, Integer number) {
             this.name.setValue(name);
             this.lastName.setValue(lastname);
             this.number.setValue(number);
         }
 
-        public Player(String name, String lastname) {
+        public Player(Integer id, String name, String lastname) {
             this.name.setValue(name);
             this.lastName.setValue(lastname);
+        }
+
+        public Integer getId() {
+            if (id == null) {
+                return 0;
+            }
+            return id.getValue();
         }
 
         public String getName() {
@@ -217,6 +228,10 @@ public class CoreAppFXMLController implements Initializable, Runnable {
                 return 0;
             }
             return rebounds.getValue();
+        }
+
+        public SimpleIntegerProperty IdProperty() {
+            return id;
         }
 
         public SimpleStringProperty nameProperty() {
@@ -322,10 +337,10 @@ public class CoreAppFXMLController implements Initializable, Runnable {
         PreparedStatement ps = PlayerBase.get().prepareStatement(sql);
 
         String name = playerNameFld.getText();
-        if ((name == null) || (name.trim().equals(""))) {
+        if ((name == null) || (name.trim().equals(""))) { //greska
             playerNameImg.setImage(errorImg);
             uspesno = false;
-        } else {
+        } else { //prolaz
             if (playerRound > 0) {
                 playerNameImg.setImage(okImg);
             }
@@ -408,7 +423,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             ps.setInt(6, playerRebounds);
         }
         if (uspesno) {
-            playerData.add(new Player(playerNameFld.getText(),
+            playerData.add(new Player(null, playerNameFld.getText(),
                     playerLNFld.getText(),
                     Integer.parseInt(playerNumberFld.getText()),
                     Integer.parseInt(playerPointsFld.getText()),
@@ -421,8 +436,32 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             playerPointsFld.clear();
             playerAssistsFld.clear();
             playerReboundsFld.clear();
-
             playerRound++;
+
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+
+                    }
+
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            playerNameImg.setImage(null);
+                            playerLNImg.setImage(null);
+                            playerNumberImg.setImage(null);
+                            playerPointsImg.setImage(null);
+                            playerAssistsImg.setImage(null);
+                            playerReboundsImg.setImage(null);
+                        }
+                    });
+
+                }
+            });
+            t.start();
 
         } else {
             Parent root = FXMLLoader.load(getClass().getResource(
@@ -432,12 +471,13 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             stage.setTitle("Error");
             stage.show();
         }
+
     }
 
     //tred za brisanje validacionih slika
     public void run() {
         try {
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -488,7 +528,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             coachNameImg.setImage(errorImg);
             uspesno = false;
         } else {
-            if (coachRound > 0) {
+            {
                 coachNameImg.setImage(okImg);
             }
             ps.setString(1, name);
@@ -500,7 +540,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             coachLastnameImg.setImage(errorImg);
             uspesno = false;
         } else {
-            if (coachRound > 0) {
+            {
                 coachLastnameImg.setImage(okImg);
             }
             ps.setString(2, lastName);
@@ -511,7 +551,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if ((age < 20) || (age > 70)) {
                 uspesno = false;
             } else {
-                if (coachRound > 0) {
+                {
                     coachAgeImg.setImage(okImg);
                 }
                 ps.setString(3, coachesAgeFld.getText());
@@ -523,13 +563,12 @@ public class CoreAppFXMLController implements Initializable, Runnable {
 
         //Ako je validacija uspesna
         if (uspesno) {
-            coachesData.add(new Coaches(coachesNameFld.getText(), coachesLNFld
+            coachesData.add(new Coaches(null, coachesNameFld.getText(), coachesLNFld
                     .getText(), Integer.parseInt(coachesAgeFld.getText())));
             coachesNameFld.clear();
             coachesLNFld.clear();
             coachesAgeFld.clear();
             ps.execute();
-            coachRound++;
             //Ako nije
         } else {
             Parent root = FXMLLoader.load(getClass().getResource(
@@ -609,7 +648,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
         }
 
         if (uspesno) {
-            teamsData.add(new Teams(teamNameFld.getText(), teamFromFld
+            teamsData.add(new Teams(null, teamNameFld.getText(), teamFromFld
                     .getText(), Integer.parseInt(teamPointsFld.getText())));
 
             teamNameFld.clear();
@@ -658,7 +697,6 @@ public class CoreAppFXMLController implements Initializable, Runnable {
     }
 
     public void show1stTeamAction(ActionEvent event) throws Exception {
-
         Parent root = FXMLLoader.load(getClass().getResource("Set1stFive.fxml"));
         Stage five = new Stage();
         five.setScene(new Scene(root));
@@ -714,7 +752,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             ResultSet rs = PlayerBase.query("SELECT * FROM PlayerTable");
             playerData.clear();
             while (rs.next()) {
-                playerData.add(new Player(rs.getString("Name"), rs.getString("Lastname"),
+                playerData.add(new Player(rs.getInt("id"), rs.getString("Name"), rs.getString("Lastname"),
                         rs.getInt("Number"), rs.getInt("Points"), rs.getInt("Assists"), rs.getInt("Rebounds")));
 
             }
@@ -728,8 +766,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             ResultSet rs = CoachBase.query("SELECT * FROM CoachTable");
             coachesData.clear();
             while (rs.next()) {
-                coachesData.add(new Coaches(rs.getString("Name"), rs.getString("Lastname"), rs.getInt("Age")));
-
+                coachesData.add(new Coaches(rs.getInt("Id"), rs.getString("Name"), rs.getString("Lastname"), rs.getInt("Age")));
             }
         } catch (Exception e) {
             System.out.println("" + e.getMessage());
@@ -741,7 +778,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             ResultSet rs = TeamBase.query("SELECT * FROM TeamTable");
             teamsData.clear();
             while (rs.next()) {
-                teamsData.add(new Teams(rs.getString("Name"), rs.getString("From"), rs.getInt("Points")));
+                teamsData.add(new Teams(rs.getInt("id"), rs.getString("Name"), rs.getString("From"), rs.getInt("Points")));
             }
         } catch (Exception e) {
             System.out.println(" " + e.getMessage());

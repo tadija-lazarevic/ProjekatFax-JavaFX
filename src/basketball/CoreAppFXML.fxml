@@ -224,16 +224,22 @@
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="S" control="UP" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#show1stTeamAction" text="Show 1st team">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="S" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="About">
-          <items>
-            <MenuItem mnemonicParsing="false" onAction="#aboutAction" text="About">
+            <Menu mnemonicParsing="false" text="About">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#aboutAction" text="About">
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="A" control="UP" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-          </items>
-        </Menu>
+                     </accelerator>
+                  </MenuItem>
+               </items>
+            </Menu>
       </menus>
     </MenuBar>
   </children>

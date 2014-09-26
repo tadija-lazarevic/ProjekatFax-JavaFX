@@ -6,8 +6,6 @@
 package basketball;
 
 import base.CoachBase;
-import base.TeamBase;
-import com.mysql.jdbc.Connection;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
@@ -27,7 +25,7 @@ import javafx.stage.Stage;
  * @author tadija
  */
 public class SetCoachController implements Initializable {
-    
+
     //Kolone i tabela za prikazivanje trenera
     @FXML
     private TableColumn<Coaches, String> coachesNameCol;
@@ -39,28 +37,28 @@ public class SetCoachController implements Initializable {
     private Button chooseBtn;
     @FXML
     private Button cancelBtn;
-    
+
     private ObservableList<Coaches> coachesData;
-    
 
     @FXML
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         coachesNameCol
                 .setCellValueFactory(new PropertyValueFactory<Coaches, String>(
                                 "name"));
         coachesLNCol
                 .setCellValueFactory(new PropertyValueFactory<Coaches, String>(
                                 "lastName"));
-        
+
         coachesData = FXCollections.observableArrayList();
         coachTable.setItems(coachesData);
         coachTable.setEditable(false);
         CoachBase.get();
         loadCoachesData();
     }
+
     //sql upit
     public void loadCoachesData() {
         try {
@@ -70,12 +68,13 @@ public class SetCoachController implements Initializable {
                 coachesData.add(new Coaches(rs.getString("Name"), rs.getString("Lastname")));
             }
         } catch (Exception e) {
-            System.out.println(""+e.getMessage());
+            System.out.println("" + e.getMessage());
         }
     }
 
-    public void chooseAction(ActionEvent event) {        
-        
+    public void chooseAction(ActionEvent event) {
+        String name = coachTable.getSelectionModel().getSelectedItem().toString();
+        System.out.println(" " + name);
     }
 
     public void cancelAction(ActionEvent event) {

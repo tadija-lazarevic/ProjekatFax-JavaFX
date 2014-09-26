@@ -12,14 +12,22 @@ import javafx.beans.property.SimpleStringProperty;
 // Klasa tim
 public class Teams {
 
+    private SimpleIntegerProperty id = new SimpleIntegerProperty();
     private SimpleStringProperty name = new SimpleStringProperty();
     private SimpleStringProperty from = new SimpleStringProperty();
     private SimpleIntegerProperty points = new SimpleIntegerProperty();
 
-    public Teams(String name, String from, int points) {
+    public Teams(Integer id, String name, String from, int points) {
         this.name.setValue(name);
         this.from.setValue(from);
         this.points.setValue(points);
+    }
+
+    public Integer getId() {
+        if (id == null) {
+            return 0;
+        }
+        return id.getValue();
     }
 
     public String getName() {
@@ -41,6 +49,10 @@ public class Teams {
             return 0;
         }
         return points.getValue();
+    }
+
+    public SimpleIntegerProperty idProperty() {
+        return id;
     }
 
     public SimpleStringProperty nameProperty() {

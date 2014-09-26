@@ -48,15 +48,14 @@ public class SetTeamController implements Initializable {
     // Kolone za tim
     @FXML
     private TableColumn<Teams, String> teamsNameCol;
-    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         teamsNameCol
                 .setCellValueFactory(new PropertyValueFactory<Teams, String>(
-                                "name"));  
-        
+                                "name"));
+
         teamsData = FXCollections.observableArrayList();
         teamsTable.setItems(teamsData);
         teamsTable.setEditable(false);
@@ -69,17 +68,18 @@ public class SetTeamController implements Initializable {
             ResultSet rs = TeamBase.query("SELECT * FROM TeamTable");
             teamsData.clear();
             while (rs.next()) {
-                teamsData.add(new Teams(rs.getString("Name"), rs.getString("From"), rs.getInt("Points")));
+                teamsData.add(new Teams(null, rs.getString("Name"), rs.getString("From"), rs.getInt("Points")));
             }
         } catch (Exception e) {
         }
     }
-    
-    public void chooseAction (ActionEvent event) {
-        String name = teamsNameCol.toString();
-        System.out.println("" + name);
+
+    public void chooseAction(ActionEvent event) {
+        String name = null;
+
     }
-    public void cancelAction (ActionEvent event) {
+
+    public void cancelAction(ActionEvent event) {
         Stage stage = (Stage) cancelBtn.getScene().getWindow();
         stage.close();
     }

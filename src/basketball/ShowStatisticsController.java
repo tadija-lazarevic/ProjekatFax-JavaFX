@@ -14,7 +14,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-
 public class ShowStatisticsController implements Initializable {
 
     //tabela za poene i kolone za ime i prezime
@@ -53,6 +52,7 @@ public class ShowStatisticsController implements Initializable {
         showRebounds();
 
     }
+
     //tabela za poene
     public void showPoints() {
         pointsNameCol.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
@@ -66,12 +66,13 @@ public class ShowStatisticsController implements Initializable {
             ResultSet rs = PlayerBase.query("SELECT * FROM  PlayerTable ORDER BY Points DESC");
             pointsData.clear();
             while (rs.next()) {
-                pointsData.add(new Player(rs.getString("Name"), rs.getString("Lastname")));
+                pointsData.add(new Player(null, rs.getString("Name"), rs.getString("Lastname")));
             }
         } catch (Exception e) {
-            System.out.println(""+e.getMessage());
+            System.out.println("" + e.getMessage());
         }
     }
+
     //tabela za asistencije
     public void showAssists() {
         assistsNameCol.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
@@ -85,12 +86,13 @@ public class ShowStatisticsController implements Initializable {
             ResultSet rs = PlayerBase.query("SELECT * FROM PlayerTable ORDER BY Assists DESC");
             assistsData.clear();
             while (rs.next()) {
-                assistsData.add(new Player(rs.getString("Name"), rs.getString("Lastname")));
+                assistsData.add(new Player(null, rs.getString("Name"), rs.getString("Lastname")));
             }
         } catch (Exception e) {
-            System.out.println(""+e.getMessage());
+            System.out.println("" + e.getMessage());
         }
     }
+
     //tabela za skokove
     public void showRebounds() {
         reboundsNameCol.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
@@ -104,10 +106,10 @@ public class ShowStatisticsController implements Initializable {
             ResultSet rs = PlayerBase.query("SELECT * FROM PlayerTable ORDER BY Rebounds DESC");
             reboundsData.clear();
             while (rs.next()) {
-                reboundsData.add(new Player( rs.getString("Name"), rs.getString("Lastname")));
+                reboundsData.add(new Player(null, rs.getString("Name"), rs.getString("Lastname")));
             }
         } catch (Exception e) {
-            System.out.println(""+e.getMessage());
+            System.out.println("" + e.getMessage());
         }
 
     }

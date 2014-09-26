@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="TeamAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basketball.Set1stFive">
+   <children>
+      <SplitPane dividerPositions="0.11055276381909548" layoutX="202.0" layoutY="56.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Text layoutX="251.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1st five:">
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="350.0" prefWidth="288.0" spacing="30.0" AnchorPane.bottomAnchor="0.0">
+                     <children>
+                        <Text layoutX="76.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of the coach">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="86.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of the team:">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="96.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Playmaker:">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="106.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guard">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="116.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forward:">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="126.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Center-forward:">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text layoutX="136.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Center:">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="310.0" prefHeight="350.0" prefWidth="288.0" spacing="30.0">
+                     <children>
+                        <Text fx:id="coachName" layoutX="76.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="teamName" layoutX="86.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="playName" layoutX="96.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="guardName" layoutX="106.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="forwardName" layoutX="116.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="centerFName" layoutX="126.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text fx:id="centerName" layoutX="136.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

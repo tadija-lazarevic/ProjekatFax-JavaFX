@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package basketball;
 
 import base.CoachBase;
@@ -29,7 +28,7 @@ import javafx.stage.Stage;
  * @author tadija
  */
 public class PositionController implements Initializable {
-    
+
     @FXML
     private TableView positionTable;
     @FXML
@@ -42,53 +41,51 @@ public class PositionController implements Initializable {
     private Button chooseBtn;
     @FXML
     private Button cancelBtn;
-    
+
     private ObservableList<Player> playerData;
     private Connection conn = null;
-    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         playerNumberCol
                 .setCellValueFactory(new PropertyValueFactory<Player, Integer>(
                                 "number"));
-        
+
         playerNameCol
                 .setCellValueFactory(new PropertyValueFactory<Player, String>(
                                 "name"));
         playerLNCol
                 .setCellValueFactory(new PropertyValueFactory<Player, String>(
                                 "lastName"));
-       
-        
+
         playerData = FXCollections.observableArrayList();
         positionTable.setItems(playerData);
         positionTable.setEditable(false);
         PlayerBase.get();
         loadPlayerData();
-        
+
     }
-    
-     public void loadPlayerData() {
+
+    public void loadPlayerData() {
         try {
             ResultSet rs = PlayerBase.query("SELECT * FROM PlayerTable");
             playerData.clear();
             while (rs.next()) {
-               playerData.add(new CoreAppFXMLController.Player(rs.getString("Name"), rs.getString("Lastname"), rs.getInt("Number")));
+                playerData.add(new CoreAppFXMLController.Player(rs.getInt("id"), rs.getString("Name"), rs.getString("Lastname"), rs.getInt("Number")));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    public void chooseAction (ActionEvent event) {
-    
+
+    public void chooseAction(ActionEvent event) {
+
     }
-    public void cancelAction (ActionEvent event) {
+
+    public void cancelAction(ActionEvent event) {
         Stage stage = (Stage) cancelBtn.getScene().getWindow();
         stage.close();
     }
-    
-    
+
 }
