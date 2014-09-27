@@ -5,23 +5,13 @@
  */
 package basketball;
 
-import base.CoachBase;
-import base.PlayerBase;
-import basketball.CoreAppFXMLController.Player;
-import com.mysql.jdbc.Connection;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
+import javafx.scene.control.Tooltip;
 
 /**
  *
@@ -30,62 +20,22 @@ import javafx.stage.Stage;
 public class PositionController implements Initializable {
 
     @FXML
-    private TableView positionTable;
+    private Button positionOne;
     @FXML
-    private TableColumn<Player, Integer> playerNumberCol;
+    private Button positionTwo;
     @FXML
-    private TableColumn<Player, String> playerNameCol;
+    private Button positionThree;
     @FXML
-    private TableColumn<Player, String> playerLNCol;
+    private Button positionFour;
     @FXML
-    private Button chooseBtn;
-    @FXML
-    private Button cancelBtn;
-
-    private ObservableList<Player> playerData;
-    private Connection conn = null;
+    private Button positionFive;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        playerNumberCol
-                .setCellValueFactory(new PropertyValueFactory<Player, Integer>(
-                                "number"));
-
-        playerNameCol
-                .setCellValueFactory(new PropertyValueFactory<Player, String>(
-                                "name"));
-        playerLNCol
-                .setCellValueFactory(new PropertyValueFactory<Player, String>(
-                                "lastName"));
-
-        playerData = FXCollections.observableArrayList();
-        positionTable.setItems(playerData);
-        positionTable.setEditable(false);
-        PlayerBase.get();
-        loadPlayerData();
-
-    }
-
-    public void loadPlayerData() {
-        try {
-            ResultSet rs = PlayerBase.query("SELECT * FROM PlayerTable");
-            playerData.clear();
-            while (rs.next()) {
-                playerData.add(new CoreAppFXMLController.Player(rs.getInt("id"), rs.getString("Name"), rs.getString("Lastname"), rs.getInt("Number")));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void chooseAction(ActionEvent event) {
 
-    }
-
-    public void cancelAction(ActionEvent event) {
-        Stage stage = (Stage) cancelBtn.getScene().getWindow();
-        stage.close();
     }
 
 }
