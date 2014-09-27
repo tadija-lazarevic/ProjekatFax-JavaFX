@@ -5,6 +5,7 @@
  */
 package basketball;
 
+import base.PlayerBase;
 import base.TeamBase;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -15,17 +16,24 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -36,7 +44,7 @@ import javafx.stage.Stage;
 public class SetTeamController implements Initializable {
 
     @FXML
-    private TableView teamsTable;
+    private TableView<Teams> teamsTable;
     @FXML
     private Button chooseBtn;
     @FXML
@@ -61,6 +69,7 @@ public class SetTeamController implements Initializable {
         teamsTable.setEditable(false);
         TeamBase.get();
         loadTeamData();
+
     }
 
     public void loadTeamData() {
@@ -74,9 +83,9 @@ public class SetTeamController implements Initializable {
         }
     }
 
-    public void chooseAction(ActionEvent event) {
-        String name = null;
-
+    public void chooseAction(ActionEvent event) throws SQLException {
+        Teams team = (Teams) teamsTable.getSelectionModel().getSelectedItem();
+        System.out.println(" " + team.getName());
     }
 
     public void cancelAction(ActionEvent event) {
