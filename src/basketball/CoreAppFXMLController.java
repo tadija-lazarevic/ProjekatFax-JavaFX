@@ -10,8 +10,6 @@ import base.PlayerBase;
 import base.TeamBase;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -37,7 +35,7 @@ import javafx.stage.Stage;
  * @author tadija
  * @author lazarevic.tadija@gmail.com
  */
-public class CoreAppFXMLController implements Initializable, Runnable {
+public class CoreAppFXMLController implements Initializable {
 
     // Input za igrace
     @FXML
@@ -160,7 +158,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
         private SimpleIntegerProperty rebounds = new SimpleIntegerProperty();
 
         public Player(Integer id, String name, String lastName, Integer number,
-                Integer points, Integer assists, Integer rebounds) {
+                Integer points, Integer assists, Integer rebounds, Integer position) {
             this.name.setValue(name);
             this.lastName.setValue(lastName);
             this.number.setValue(number);
@@ -428,7 +426,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
                     Integer.parseInt(playerNumberFld.getText()),
                     Integer.parseInt(playerPointsFld.getText()),
                     Integer.parseInt(playerAssistsFld.getText()),
-                    Integer.parseInt(playerReboundsFld.getText())));
+                    Integer.parseInt(playerReboundsFld.getText()), null));
             ps.execute();
             playerNameFld.clear();
             playerLNFld.clear();
@@ -437,7 +435,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             playerAssistsFld.clear();
             playerReboundsFld.clear();
             playerRound++;
-
+            //tred za brisanje validacionih slika
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -470,24 +468,6 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             stage.setScene(new Scene(root));
             stage.setTitle("Error");
             stage.show();
-        }
-
-    }
-
-    //tred za brisanje validacionih slika
-    public void run() {
-        try {
-            //Thread.sleep(2000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            playerNameImg.setImage(null);
-            playerLNImg.setImage(null);
-            playerNumberImg.setImage(null);
-            playerPointsImg.setImage(null);
-            playerAssistsImg.setImage(null);
-            playerReboundsImg.setImage(null);
-            //itd...
         }
 
     }
@@ -528,7 +508,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             coachNameImg.setImage(errorImg);
             uspesno = false;
         } else {
-            {
+            if (coachRound > 0) {
                 coachNameImg.setImage(okImg);
             }
             ps.setString(1, name);
@@ -540,7 +520,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             coachLastnameImg.setImage(errorImg);
             uspesno = false;
         } else {
-            {
+            if (coachRound > 0) {
                 coachLastnameImg.setImage(okImg);
             }
             ps.setString(2, lastName);
@@ -551,7 +531,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             if ((age < 20) || (age > 70)) {
                 uspesno = false;
             } else {
-                {
+                if (coachRound > 0) {
                     coachAgeImg.setImage(okImg);
                 }
                 ps.setString(3, coachesAgeFld.getText());
@@ -569,6 +549,29 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             coachesLNFld.clear();
             coachesAgeFld.clear();
             ps.execute();
+
+            //tred za brisanje validacionih slika
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+
+                    }
+
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            coachNameImg.setImage(null);
+                            coachLastnameImg.setImage(null);
+                            coachAgeImg.setImage(null);
+                        }
+                    });
+
+                }
+            });
+            t.start();
             //Ako nije
         } else {
             Parent root = FXMLLoader.load(getClass().getResource(
@@ -656,6 +659,30 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             teamPointsFld.clear();
             ps.execute();
             teamRound++;
+
+            //tred za brisanje validacionih slika
+            //brise posle 2 sekunde
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+
+                    }
+
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            teamNameImg.setImage(null);
+                            teamFromImg.setImage(null);
+                            teamPointsImg.setImage(null);
+                        }
+                    });
+
+                }
+            });
+            t.start();
 
         } else {
             Parent root = FXMLLoader.load(getClass().getResource(
@@ -753,7 +780,7 @@ public class CoreAppFXMLController implements Initializable, Runnable {
             playerData.clear();
             while (rs.next()) {
                 playerData.add(new Player(rs.getInt("id"), rs.getString("Name"), rs.getString("Lastname"),
-                        rs.getInt("Number"), rs.getInt("Points"), rs.getInt("Assists"), rs.getInt("Rebounds")));
+                        rs.getInt("Number"), rs.getInt("Points"), rs.getInt("Assists"), rs.getInt("Rebounds"), null));
 
             }
         } catch (Exception e) {
