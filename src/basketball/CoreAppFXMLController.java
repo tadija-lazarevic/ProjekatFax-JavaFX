@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -317,6 +318,13 @@ public class CoreAppFXMLController implements Initializable {
         teamsTable.setEditable(false);
         TeamBase.get();
         loadTeamData();
+
+        //tooltips za buttone
+        playerOneBtn.setTooltip(new Tooltip("Please select playmaker"));
+        playerTwoBtn.setTooltip(new Tooltip("Please select guard"));
+        playerThreeBtn.setTooltip(new Tooltip("Please select forward"));
+        playerFourBtn.setTooltip(new Tooltip("Please select big forward"));
+        playerFiveBtn.setTooltip(new Tooltip("Please select center"));
 
     }
 
